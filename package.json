@@ -2,22 +2,26 @@
   "name": "api-nodejs-compras",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/src/infrastructure/webserver/server.js",
   "scripts": {
-    "start": "node dist/src/server.js",
-    "dev": "nodemon --legacy-watch src/server.ts",
+    "start": "node dist/src/infrastructure/webserver/server.js",
+    "dev": "nodemon --legacy-watch src/infrastructure/webserver/server.ts",
     "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "mongoose": "^8.8.3"
+    "mongoose": "^8.8.3",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.8.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "@types/node": "^22.11.0",
+    "@types/node": "^22.10.0",
+    "@types/reflect-metadata": "^0.0.5",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
