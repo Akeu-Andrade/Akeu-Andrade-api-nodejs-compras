@@ -1,7 +1,9 @@
+import 'reflect-metadata';
 import express from 'express';
 import { productRoutes } from './routes/productRoutes';
 import { connectDatabase } from '../../shared/config/database';
- 
+import '../../shared/dependencyInjection';
+
 const app = express();
 
 app.use(express.json());
