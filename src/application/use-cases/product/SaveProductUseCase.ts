@@ -1,18 +1,18 @@
 import { injectable, inject } from "tsyringe";
-import { CreateProductDTO } from "../../dtos/CreateProductDTO";
-import { ICreateProductUseCase } from "./ICreateProductUseCase";
+import { SaveProductDTO } from "../../dtos/SaveProductDTO";
+import { ISaveProductUseCase } from "./ISaveProductUseCase";
 import { IProductRepository } from "../../../domain/repositories/IProductRepository";
 import { Product } from "../../../domain/entities/Product";
 import { InvalidParametersError } from "../../../shared/errors/InvalidParametersError";
 import { ProductAlreadyExistsError } from "../../../shared/errors/ProductAlreadyExistsError";
 
 @injectable()
-export class CreateProductUseCase implements ICreateProductUseCase {
+export class SaveProductUseCase implements ISaveProductUseCase {
     constructor(
         @inject('IProductRepository') private productRepository: IProductRepository
     ) {}
 
-    async invoke(productDTO: CreateProductDTO): Promise<void> {
+    async invoke(productDTO: SaveProductDTO): Promise<void> {
         try {
             if (!productDTO.name) {
                 throw new InvalidParametersError();

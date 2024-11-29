@@ -1,22 +1,22 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
-import { CreateProductDTO } from '../dtos/CreateProductDTO';
-import { ICreateProductUseCase } from '../use-cases/product/ICreateProductUseCase';
+import { SaveProductDTO } from '../dtos/SaveProductDTO';
 import { IGetProductUseCase } from '../use-cases/product/IGetProductUseCase';
+import { ISaveProductUseCase } from '../use-cases/product/ISaveProductUseCase';
 
 @injectable()
 export class ProductController {
     constructor(
-        @inject("ICreateProductUseCase") private createProductUseCase: ICreateProductUseCase,
+        @inject("ISaveProductUseCase") private saveProductUseCase: ISaveProductUseCase,
         @inject("IGetProductUseCase") private getProductUseCase: IGetProductUseCase
     ) {}
     
-    create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-        const productDTO: CreateProductDTO = req.body;
+    store = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        const productDTO: SaveProductDTO = req.body;
 
         try {
-            await this.createProductUseCase.invoke(productDTO);
-            res.status(201).json({ mensage: 'Product created successfully'});
+            await this.saveProductUseCase.invoke(productDTO);
+            res.status(201).json({ mensage: 'Produto criado com sucesso' });
         } catch (error) {
             next(error);
         }
