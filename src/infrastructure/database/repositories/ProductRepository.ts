@@ -9,7 +9,7 @@ export class ProductRepository implements IProductRepository {
             ...product,
             createdAt: new Date()
         };
-        
+
         await ProductModel.create(newProduct);
     }
 

@@ -26,7 +26,7 @@ export class UserController {
     getUsers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const users = await this.getUsersUseCase.invoke();
-            res.status(200).json();
+            res.status(200).json(users);
         } catch (error) {
             next(error);
         }
