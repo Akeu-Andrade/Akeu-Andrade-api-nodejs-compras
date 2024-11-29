@@ -8,5 +8,6 @@ const router = Router();
 const productController = container.resolve(ProductController);
 
 router.post('/product', productController.create);
+router.get('/product', productController.getProduct);
 
 export { router as productRoutes };
