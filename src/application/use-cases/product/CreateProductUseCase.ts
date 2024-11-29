@@ -3,6 +3,8 @@ import { CreateProductDTO } from "../../dtos/CreateProductDTO";
 import { ICreateProductUseCase } from "./ICreateProductUseCase";
 import { IProductRepository } from "../../../domain/repositories/IProductRepository";
 import { Product } from "../../../domain/entities/Product";
+import { InvalidParametersError } from "../../../shared/errors/InvalidParametersError";
+import { ProductAlreadyExistsError } from "../../../shared/errors/ProductAlreadyExistsError";
 
 @injectable()
 export class CreateProductUseCase implements ICreateProductUseCase {
@@ -13,14 +15,13 @@ export class CreateProductUseCase implements ICreateProductUseCase {
     async invoke(productDTO: CreateProductDTO): Promise<void> {
         try {
             if (!productDTO.name) {
-                // throw new InvalidParametersError();
+                throw new InvalidParametersError();
             }
 
             const productExists = await this.productRepository.findByName(productDTO.name);
     
             if (productExists) {
-                // throw new ProductAlreadyExistsError();
-                throw Error('Product already exists');
+                throw new ProductAlreadyExistsError();
             }
 
             const product = {

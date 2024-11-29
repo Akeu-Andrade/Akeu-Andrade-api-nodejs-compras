@@ -19,4 +19,14 @@ export class ProductController {
             next(error);
         }
     }
+
+    getProducts = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        try {
+            const { name } = request.body;
+            
+            response.status(200).json();
+        } catch (error) {
+            next(error);
+        }
+    }
 }

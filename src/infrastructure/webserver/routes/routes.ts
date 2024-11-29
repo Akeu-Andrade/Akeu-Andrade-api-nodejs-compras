@@ -1,4 +1,5 @@
 import express from 'express';
+import { errorHandler } from '../../../shared/errors/errorHandler';
 
 const router = express.Router();
 
@@ -8,5 +9,7 @@ router.get(
         res.send('Hello World!!!');
     }
 );
+
+router.use(errorHandler);
 
 export default router;
