@@ -7,7 +7,7 @@ export class Order {
             price: number,
             quantity: number
         }>,
-        public readonly totalPrice: number,
-        public readonly date: Date
+        public totalPrice: number,
+        public date: Date
     ) {}
 }

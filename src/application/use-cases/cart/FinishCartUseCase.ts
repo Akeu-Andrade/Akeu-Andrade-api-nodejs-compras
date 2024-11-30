@@ -6,12 +6,15 @@ import { Cart } from "../../../domain/entities/Cart";
 import { EmptyCartError } from "../../../shared/errors/EmptyCartError";
 import { Order } from "../../../domain/entities/Order";
 import { IGetCartUseCase } from "./interfaces/IGetCartUseCase";
+import { ISaveOrderUseCase } from "./interfaces/ISaveOrderUseCase";
+import { SaveOrderDTO } from "../../dtos/order/SaveOrderDTO";
 
 @injectable()
 export class FinishCartUseCase implements IFinishCartUseCase {
     constructor(
         @inject('ICartRepository') private cartRepository: ICartRepository,
-        @inject('IGetCartUseCase') private getCartUseCase: IGetCartUseCase
+        @inject('IGetCartUseCase') private getCartUseCase: IGetCartUseCase,
+        @inject('ISaveOrderUseCase') private saveOrderUseCase: ISaveOrderUseCase
     ) {}
 
     async invoke(cartDTO: FinishCartDTO): Promise<void> {
@@ -22,13 +25,11 @@ export class FinishCartUseCase implements IFinishCartUseCase {
                 throw new EmptyCartError();
             }
 
-            const totalPrice = this.calculateTotalPriceCart(cart);
-
-            const order: Order = {
-                ...cart,
-                date: new Date(),
-                totalPrice: totalPrice,
+            const order: SaveOrderDTO = {
+                ...cart
             }
+
+            await this.saveOrderUseCase.invoke(order);
 
             await this.cartRepository.clearCart(cart.id);
         } catch (error) {
@@ -36,8 +37,5 @@ export class FinishCartUseCase implements IFinishCartUseCase {
         }
     }
 
-    private calculateTotalPriceCart(cart: Cart): number {
-        return cart.products.reduce((acc, product) =>
-             acc + (product.quantity * product.price), 0);
-    }
+
 }
