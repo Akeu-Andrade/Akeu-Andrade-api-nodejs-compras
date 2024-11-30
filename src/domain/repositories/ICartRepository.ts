@@ -1,7 +1,10 @@
+import { AddProductToCartDTO } from "../../application/dtos/AddProductToCartDTO";
+import { GetCartDTO } from "../../application/dtos/GetCartDTO";
 import { SaveCartDTO } from "../../application/dtos/SaveCartDTO";
+import { Cart } from "../entities/Cart";
 
 export interface ICartRepository {
     createCart(cart: SaveCartDTO): Promise<void>;
-    getCartByUserId(userId: string): Promise<SaveCartDTO | null>;
-    addProductToCart(cart: SaveCartDTO, productId: string): Promise<void>;
+    getByUserId(cart: GetCartDTO): Promise<Cart>;
+    addProductToCart(product: AddProductToCartDTO): Promise<void>;
 }
