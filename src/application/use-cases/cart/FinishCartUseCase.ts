@@ -2,9 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IFinishCartUseCase } from "./interfaces/IFinishCartUseCase";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
 import { FinishCartDTO } from "../../dtos/cart/FinishCartDTO";
-import { Cart } from "../../../domain/entities/Cart";
 import { EmptyCartError } from "../../../shared/errors/EmptyCartError";
-import { Order } from "../../../domain/entities/Order";
 import { IGetCartUseCase } from "./interfaces/IGetCartUseCase";
 import { ISaveOrderUseCase } from "./interfaces/ISaveOrderUseCase";
 import { SaveOrderDTO } from "../../dtos/order/SaveOrderDTO";
@@ -26,8 +24,15 @@ export class FinishCartUseCase implements IFinishCartUseCase {
             }
 
             const order: SaveOrderDTO = {
-                ...cart
-            }
+                userId: cart.userId,
+                products: cart.products.map(product => ({
+                    productId: product.productId,
+                    price: product.price,
+                    quantity: product.quantity
+                }))
+            };
+
+            console.log('FinishCartUseCase: ', order);
 
             await this.saveOrderUseCase.invoke(order);
 

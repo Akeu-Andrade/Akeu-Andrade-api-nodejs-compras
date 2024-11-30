@@ -3,7 +3,6 @@ import { ISaveOrderUseCase } from "../cart/interfaces/ISaveOrderUseCase";
 import { Order } from "../../../domain/entities/Order";
 import { IOrderRepository } from "../../../domain/repositories/IOrderRepository";
 import { SaveOrderDTO } from "../../dtos/order/SaveOrderDTO";
-import { Cart } from "../../../domain/entities/Cart";
 
 @injectable()
 export class SaveOrderUseCase implements ISaveOrderUseCase {
@@ -14,7 +13,9 @@ export class SaveOrderUseCase implements ISaveOrderUseCase {
     async invoke(orderDTO: SaveOrderDTO): Promise<void> {
         try {
 
+            console.log('SaveOrderUseCase: ', orderDTO.products);
             const totalPrice = this.calculateTotalPrice(orderDTO);
+            console.log('SaveOrderUseCase: ', totalPrice);
 
             const order = {
                 ...orderDTO,
@@ -22,7 +23,8 @@ export class SaveOrderUseCase implements ISaveOrderUseCase {
                 date: new Date(),
             } as Order;
 
-            await this.orderRepository.saveOrder(order);
+            console.log('SaveOrderUseCase: ', order);
+            await this.orderRepository.createOrder(order);
         } catch (error) {
             throw error;
         }

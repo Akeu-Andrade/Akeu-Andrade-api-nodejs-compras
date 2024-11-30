@@ -5,7 +5,6 @@ import { CartModel } from "../models/CartModel";
 export class CartRepository implements ICartRepository {
 
     async createCart(userId: string): Promise<void> {
-        console.log('userId', userId);
         const newCart = {
             userId: userId,
             products: [],
