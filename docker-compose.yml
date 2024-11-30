@@ -16,7 +16,7 @@ services:
       - "${MONGO_EXTERNAL_PORT}:27017"
 
   node:
-    image: node:20.13.1
+    image: node:22.11.0
     build:
       context: ./
       dockerfile: Dockerfile
