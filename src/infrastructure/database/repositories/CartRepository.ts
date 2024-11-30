@@ -1,26 +1,34 @@
 import { Cart } from "../../../domain/entities/Cart";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
+import { CartModel } from "../models/CartModel";
 
 export class CartRepository implements ICartRepository {
 
-    createCart(cart: Cart): Promise<void> {
-        throw new Error("Method not implemented.");
+    async createCart(userId: string): Promise<void> {
+        const newCart = {
+            userId,
+            products: [],
+            createdAt: new Date(),
+            updatedAt: new Date()
+        };
+
+        await CartModel.create(newCart);
     }
 
-    getById(cartId: string): Promise<Cart> {
-        throw new Error("Method not implemented.");
+    async getById(cartId: string): Promise<Cart | null> {
+        return await CartModel.findById(cartId);
     }
 
-    getByUserId(userId: string): Promise<Cart> {
-        throw new Error("Method not implemented.");
+    async getByUserId(userId: string): Promise<Cart | null> {
+        return await CartModel.findOne({ userId });
     }
 
-    clearCart(cartId: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    async clearCart(cartId: string): Promise<void> {
+        await CartModel.updateOne({ _id: cartId }, { products: [] });
     }
     
-    update(cart: Cart): Promise<void> {
-        throw new Error("Method not implemented.");
+    async update(cart: Cart): Promise<void> {
+        await CartModel.updateOne({ _id: cart.id }, cart);
     }
 
 }

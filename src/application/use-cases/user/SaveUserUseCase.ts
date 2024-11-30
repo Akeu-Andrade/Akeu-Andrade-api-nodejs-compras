@@ -4,7 +4,6 @@ import { SaveUserDTO } from "../../dtos/user/SaveUserDTO";
 import { EmailAlreadyExistsError } from "../../../shared/errors/EmailAlreadyExistsError";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { User } from "../../../domain/entities/User";
-import { SaveCartDTO } from "../../dtos/cart/SaveCartDTO";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
 
 @injectable()
@@ -32,8 +31,7 @@ export class SaveUserUseCase implements ISaveUserUseCase {
         }
     }
 
-    async createCartEmpty(userId: string) {
-        const cartDTO: SaveCartDTO = { userId };
-        await this.cartRepository.createCart(cartDTO);
+    async createCartEmpty(userId: string): Promise<void> {
+        await this.cartRepository.createCart(userId);
     }
 }
