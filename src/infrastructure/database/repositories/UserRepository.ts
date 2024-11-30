@@ -8,13 +8,14 @@ export class UserRepository implements IUserRepository {
         return UserModel.findOne({ email });
     }
 
-    async saveUser(user: User): Promise<void> {
+    async saveUser(user: User): Promise<string> {
         const newUser = {
             ...user,
-            createdAt: new Date()
+            createdAt: new Date(),
+            updatedAt: new Date()
         };
 
-        await UserModel.create(newUser);
+        return (await UserModel.create(newUser)).id;
     }
 
     async getUsers(): Promise<User[]> {

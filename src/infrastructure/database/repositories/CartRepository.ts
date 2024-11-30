@@ -5,14 +5,15 @@ import { CartModel } from "../models/CartModel";
 export class CartRepository implements ICartRepository {
 
     async createCart(userId: string): Promise<void> {
+        console.log('userId', userId);
         const newCart = {
-            userId,
+            userId: userId,
             products: [],
             createdAt: new Date(),
             updatedAt: new Date()
         };
 
-        await CartModel.create(newCart);
+        await CartModel.create({...newCart});
     }
 
     async getById(cartId: string): Promise<Cart | null> {

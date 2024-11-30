@@ -22,9 +22,9 @@ export class SaveUserUseCase implements ISaveUserUseCase {
 
             const user = userDTO as User;
 
-            await this.userRepository.saveUser(user);
+            const userId = await this.userRepository.saveUser(user);
             
-            this.createCartEmpty(user.id);
+            this.createCartEmpty(userId);
 
         } catch (error) {
             throw error;
