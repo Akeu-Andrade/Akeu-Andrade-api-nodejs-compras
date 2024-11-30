@@ -1,18 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
-import { SaveCartDTO } from '../dtos/SaveCartDTO';
+import { AddProductToCartDTO } from '../dtos/AddProductToCartDTO';
+import { IAddProductToCartUseCase } from '../use-cases/cart/ISaveCartUseCase';
 
 @injectable()
 export class CartController {
     constructor(
+        @inject("IAddProductToCartUseCase") private addProductToCartUseCase: IAddProductToCartUseCase
     ) {}
 
-    store = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-        const cardDTO: SaveCartDTO = req.body;
-        
+    addProductToCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        const addProductDTO: AddProductToCartDTO = req.body;
+
         try {
-            
-            res.status(201).json("Carrinho criado com sucesso");
+            await this.addProductToCartUseCase.invoke(addProductDTO);
+            res.status(201).json("Produto adicionado ao carrinho com sucesso");
         } catch (error) {
             next(error);
         }
