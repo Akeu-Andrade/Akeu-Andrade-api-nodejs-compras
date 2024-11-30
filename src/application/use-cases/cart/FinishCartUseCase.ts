@@ -32,8 +32,6 @@ export class FinishCartUseCase implements IFinishCartUseCase {
                 }))
             };
 
-            console.log('FinishCartUseCase: ', order);
-
             await this.saveOrderUseCase.invoke(order);
 
             await this.cartRepository.clearCart(cart.id);

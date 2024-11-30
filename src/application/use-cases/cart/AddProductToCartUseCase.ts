@@ -4,6 +4,10 @@ import { IGetCartUseCase } from "./interfaces/IGetCartUseCase";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
 import { IProductRepository } from "../../../domain/repositories/IProductRepository";
 import { IAddProductToCartUseCase } from "./interfaces/IAddProductToCartUseCase";
+import { Cart } from "../../../domain/entities/Cart";
+import { Product } from "../../../domain/entities/Product";
+import { CartNotFoundError } from "../../../shared/errors/CartNotFoundError";
+import { ProductNotFoundError } from "../../../shared/errors/ProductNotFoundError";
 
 @injectable()
 export class AddProductToCartUseCase implements IAddProductToCartUseCase {
@@ -14,21 +18,33 @@ export class AddProductToCartUseCase implements IAddProductToCartUseCase {
     ) {}
 
     async invoke(addProductDTO: AddProductToCartDTO): Promise<void> {
-        const cart = await this.getCartUseCase.invoke({ cartId: addProductDTO.cartId });
-        const product = await this.productRepository.getById(addProductDTO.productId);
+        try {
+            const cart = await this.getCartUseCase.invoke({ cartId: addProductDTO.cartId });
+            
+            const product = await this.productRepository.getById(addProductDTO.productId);
+            if (!product) {
+                throw new ProductNotFoundError();
+            }
 
-        const existedProduct = cart.products.find(p => p.productId === addProductDTO.productId);
+            this.addOrUpdateProduct(cart, product, addProductDTO.quantity);
+
+            await this.cartRepository.update(cart);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    private addOrUpdateProduct(cart: Cart, product: Product, quantity: number): void {
+        const existedProduct = cart.products.find(p => p.productId === product.id);
 
         if (existedProduct) {
-            existedProduct.quantity += addProductDTO.quantity? addProductDTO.quantity : 1;
+            existedProduct.quantity += quantity;
         } else {
             cart.products.push({
-                productId: addProductDTO.productId,
-                quantity: 1,
-                price: product!.price
+                productId: product.id,
+                quantity: quantity,
+                price: product.price
             });
         }
-
-        await this.cartRepository.update(cart);
     }
 }
