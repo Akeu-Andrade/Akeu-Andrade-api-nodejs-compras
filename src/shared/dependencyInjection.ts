@@ -9,7 +9,7 @@ import { UserRepository } from "../infrastructure/database/repositories/UserRepo
 import { SaveUserUseCase } from "../application/use-cases/user/SaveUserUseCase";
 import { GetUsersUseCase } from "../application/use-cases/user/GetUsersUseCase";
 import { CartRepository } from "../infrastructure/database/repositories/CartRepository";
-import { AddProductToCartUseCase } from "../application/use-cases/cart/AddProductUseCase";
+import { AddProductToCartUseCase } from "../application/use-cases/cart/AddProductToCartUseCase";
 import { FinishCartUseCase } from "../application/use-cases/cart/FinishCartUseCase";
 import { GetCartUseCase } from "../application/use-cases/cart/GetCartByIdUseCase";
 import { CartController } from "../application/controllers/CartController";
@@ -41,4 +41,3 @@ container.registerSingleton("IAddProductToCartUseCase", AddProductToCartUseCase)
   .registerSingleton("IGetCartUseCase", GetCartUseCase);
 
 container.registerSingleton(CartController);
-

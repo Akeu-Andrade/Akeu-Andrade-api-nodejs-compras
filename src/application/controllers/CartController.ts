@@ -5,12 +5,12 @@ import { FinishCartDTO } from '../dtos/cart/FinishCartDTO';
 import { IFinishCartUseCase } from '../use-cases/cart/interfaces/IFinishCartUseCase';
 import { GetCartDTO } from '../dtos/cart/GetCartDTO';
 import { IGetCartUseCase } from '../use-cases/cart/interfaces/IGetCartUseCase';
-import { IAddProductUseCase } from '../use-cases/cart/interfaces/IAddProductUseCase';
+import { IAddProductToCartUseCase } from '../use-cases/cart/interfaces/IAddProductToCartUseCase';
 
 @injectable()
 export class CartController {
     constructor(
-        @inject("IAddProductUseCase") private addProductUseCase: IAddProductUseCase,
+        @inject("IAddProductToCartUseCase") private addProductUseCase: IAddProductToCartUseCase,
         @inject("IGetCartUseCase") private getCartUseCase: IGetCartUseCase,
         @inject("IFinishCartUseCase") private finishCartUseCase: IFinishCartUseCase
     ) {}

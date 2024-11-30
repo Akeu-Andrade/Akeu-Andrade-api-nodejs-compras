@@ -3,9 +3,10 @@ import { AddProductToCartDTO } from "../../dtos/cart/AddProductToCartDTO";
 import { IGetCartUseCase } from "./interfaces/IGetCartUseCase";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
 import { IProductRepository } from "../../../domain/repositories/IProductRepository";
+import { IAddProductToCartUseCase } from "./interfaces/IAddProductToCartUseCase";
 
 @injectable()
-export class AddProductToCartUseCase {
+export class AddProductToCartUseCase implements IAddProductToCartUseCase {
     constructor(
         @inject('IGetCartUseCase') private getCartUseCase: IGetCartUseCase,
         @inject('ICartRepository') private cartRepository: ICartRepository,
