@@ -28,7 +28,7 @@ export class OrderRepository implements IOrderRepository {
                 $lookup: {
                     from: "products", 
                     localField: "_id",
-                    foreignField: "id",
+                    foreignField: "_id",
                     as: "productDetails"
                 }
             },

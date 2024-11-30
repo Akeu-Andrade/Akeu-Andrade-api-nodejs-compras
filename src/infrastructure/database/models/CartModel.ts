@@ -1,7 +1,7 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, ObjectId } from 'mongoose';
 
 interface IProductCartModel {
-    productId: string;
+    productId: ObjectId;
     quantity: number;
     price: number;
 }
