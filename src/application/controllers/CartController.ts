@@ -1,19 +1,22 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
 import { AddProductToCartDTO } from '../dtos/cart/AddProductToCartDTO';
-import { IAddProductToCartUseCase } from '../use-cases/cart/ISaveCartUseCase';
-import { IGetCartUseCase } from '../use-cases/cart/IGetCartUseCase';
-import { GetCartDTO } from '../dtos/cart/GetCartDTO';
+import { FinishCartDTO } from '../dtos/cart/FinishCartDTO';
+import { IFinishCartUseCase } from '../use-cases/cart/interfaces/IFinishCartUseCase';
+import { GetCartDTO } from '../dtos/GetCartDTO';
+import { IGetCartUseCase } from '../use-cases/cart/interfaces/IGetCartUseCase';
+import { IAddProductToCartUseCase } from '../use-cases/cart/interfaces/ISaveCartUseCase';
 
 @injectable()
 export class CartController {
     constructor(
         @inject("IAddProductToCartUseCase") private addProductToCartUseCase: IAddProductToCartUseCase,
-        @inject("IGetCartUseCase") private getCartUseCase: IGetCartUseCase
+        @inject("IGetCartUseCase") private getCartUseCase: IGetCartUseCase,
+        @inject("IFinishCartUseCase") private finshCartUseCase: IFinishCartUseCase
     ) {}
 
     getCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-        const cartDTO: GetCartDTO = { userId: req.params.userId };
+        const cartDTO: GetCartDTO = { cartId: req.params.cartId };
         
         try {
             const cart = await this.getCartUseCase.invoke(cartDTO);
@@ -30,6 +33,17 @@ export class CartController {
         try {
             await this.addProductToCartUseCase.invoke(addProductDTO);
             res.status(201).json("Produto adicionado ao carrinho com sucesso");
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    finshCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        const cartDTO: FinishCartDTO = { cartId: req.params.cartId };
+
+        try {
+            await this.finshCartUseCase.invoke(cartDTO);
+            res.status(201).json("Compra finalizada com sucesso");
         } catch (error) {
             next(error);
         }

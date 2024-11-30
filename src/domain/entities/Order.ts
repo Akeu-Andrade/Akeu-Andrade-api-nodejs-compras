@@ -1,4 +1,4 @@
-export class Cart {
+export class Order {
     constructor(
         public readonly id: string,
         public readonly userId: string,
@@ -7,7 +7,7 @@ export class Cart {
             price: number,
             quantity: number
         }>,
-        public readonly createdAt: Date,
-        public readonly updatedAt: Date
+        public readonly totalPrice: number,
+        public readonly date: Date
     ) {}
 }

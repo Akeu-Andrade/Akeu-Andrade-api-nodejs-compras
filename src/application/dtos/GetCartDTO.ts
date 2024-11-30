@@ -1,3 +1,3 @@
 export interface GetCartDTO {
-    userId: string;
+    cartId: string;
 }
