@@ -1,10 +1,10 @@
 import { injectable, inject } from "tsyringe";
 import { ISaveUserUseCase } from "./ISaveUserUseCase";
-import { SaveUserDTO } from "../../dtos/SaveUserDTO";
+import { SaveUserDTO } from "../../dtos/user/SaveUserDTO";
 import { EmailAlreadyExistsError } from "../../../shared/errors/EmailAlreadyExistsError";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { User } from "../../../domain/entities/User";
-import { SaveCartDTO } from "../../dtos/SaveCartDTO";
+import { SaveCartDTO } from "../../dtos/cart/SaveCartDTO";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
 
 @injectable()

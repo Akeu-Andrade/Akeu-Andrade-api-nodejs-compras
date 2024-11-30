@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
-import { AddProductToCartDTO } from '../dtos/AddProductToCartDTO';
+import { AddProductToCartDTO } from '../dtos/cart/AddProductToCartDTO';
 import { IAddProductToCartUseCase } from '../use-cases/cart/ISaveCartUseCase';
 import { IGetCartUseCase } from '../use-cases/cart/IGetCartUseCase';
-import { GetCartDTO } from '../dtos/GetCartDTO';
+import { GetCartDTO } from '../dtos/cart/GetCartDTO';
 
 @injectable()
 export class CartController {

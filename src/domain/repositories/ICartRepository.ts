@@ -1,6 +1,6 @@
-import { AddProductToCartDTO } from "../../application/dtos/AddProductToCartDTO";
-import { GetCartDTO } from "../../application/dtos/GetCartDTO";
-import { SaveCartDTO } from "../../application/dtos/SaveCartDTO";
+import { AddProductToCartDTO } from "../../application/dtos/cart/AddProductToCartDTO";
+import { GetCartDTO } from "../../application/dtos/cart/GetCartDTO";
+import { SaveCartDTO } from "../../application/dtos/cart/SaveCartDTO";
 import { Cart } from "../entities/Cart";
 
 export interface ICartRepository {

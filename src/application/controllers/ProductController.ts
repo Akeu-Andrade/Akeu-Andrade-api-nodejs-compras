@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
-import { SaveProductDTO } from '../dtos/SaveProductDTO';
+import { SaveProductDTO } from '../dtos/product/SaveProductDTO';
 import { IGetProductUseCase } from '../use-cases/product/IGetProductUseCase';
 import { ISaveProductUseCase } from '../use-cases/product/ISaveProductUseCase';
 

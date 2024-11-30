@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IGetCartUseCase } from "./IGetCartUseCase";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
 import { Cart } from "../../../domain/entities/Cart";
-import { GetCartDTO } from "../../dtos/GetCartDTO";
+import { GetCartDTO } from "../../dtos/cart/GetCartDTO";
 
 @injectable()
 export class GetCartUseCase implements IGetCartUseCase {

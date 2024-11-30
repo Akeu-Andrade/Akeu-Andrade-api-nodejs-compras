@@ -1,5 +1,5 @@
 import { injectable, inject } from "tsyringe";
-import { SaveProductDTO } from "../../dtos/SaveProductDTO";
+import { SaveProductDTO } from "../../dtos/product/SaveProductDTO";
 import { ISaveProductUseCase } from "./ISaveProductUseCase";
 import { IProductRepository } from "../../../domain/repositories/IProductRepository";
 import { Product } from "../../../domain/entities/Product";
