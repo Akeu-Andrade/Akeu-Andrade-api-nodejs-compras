@@ -10,7 +10,8 @@ export class ProductRepository implements IProductRepository {
     async saveProduct(product: Product): Promise<void> {
         const newProduct = {
             ...product,
-            createdAt: new Date()
+            createdAt: new Date(),
+            updatedAt: new Date()
         };
 
         await ProductModel.create(newProduct);

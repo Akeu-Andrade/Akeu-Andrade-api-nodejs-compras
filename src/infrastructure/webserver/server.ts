@@ -3,15 +3,19 @@ import express from 'express';
 import { productRoutes } from './routes/productRoutes';
 import { connectDatabase } from '../../shared/config/database';
 import '../../shared/dependencyInjection';
-import { errorHandler } from '../../shared/errors/errorHandler';
+import { ErrorHandler } from '../../shared/errors/ErrorHandler';
+import { userRoutes } from './routes/userRoutes';
+import { CartRoutes } from './routes/cartRoutes';
 
 const app = express();
 
 app.use(express.json());
 
 app.use(productRoutes);
+app.use(userRoutes);
+app.use(CartRoutes);
 
-app.use(errorHandler);
+app.use(ErrorHandler);
 
 connectDatabase().then(() => {
     app.listen(3000, () => {

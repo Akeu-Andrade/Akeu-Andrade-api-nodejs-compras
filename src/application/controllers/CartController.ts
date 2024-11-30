@@ -5,14 +5,14 @@ import { FinishCartDTO } from '../dtos/cart/FinishCartDTO';
 import { IFinishCartUseCase } from '../use-cases/cart/interfaces/IFinishCartUseCase';
 import { GetCartDTO } from '../dtos/cart/GetCartDTO';
 import { IGetCartUseCase } from '../use-cases/cart/interfaces/IGetCartUseCase';
-import { IAddProductToCartUseCase } from '../use-cases/cart/interfaces/ISaveCartUseCase';
+import { IAddProductUseCase } from '../use-cases/cart/interfaces/IAddProductUseCase';
 
 @injectable()
 export class CartController {
     constructor(
-        @inject("IAddProductToCartUseCase") private addProductToCartUseCase: IAddProductToCartUseCase,
+        @inject("IAddProductUseCase") private addProductUseCase: IAddProductUseCase,
         @inject("IGetCartUseCase") private getCartUseCase: IGetCartUseCase,
-        @inject("IFinishCartUseCase") private finshCartUseCase: IFinishCartUseCase
+        @inject("IFinishCartUseCase") private finishCartUseCase: IFinishCartUseCase
     ) {}
 
     getCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -31,18 +31,18 @@ export class CartController {
         const addProductDTO: AddProductToCartDTO = { ...req.body, cartId: cartId };
 
         try {
-            await this.addProductToCartUseCase.invoke(addProductDTO);
+            await this.addProductUseCase.invoke(addProductDTO);
             res.status(201).json("Produto adicionado ao carrinho com sucesso");
         } catch (error) {
             next(error);
         }
     }
 
-    finshCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    finishCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         const cartDTO: FinishCartDTO = { cartId: req.params.cartId };
 
         try {
-            await this.finshCartUseCase.invoke(cartDTO);
+            await this.finishCartUseCase.invoke(cartDTO);
             res.status(201).json("Compra finalizada com sucesso");
         } catch (error) {
             next(error);

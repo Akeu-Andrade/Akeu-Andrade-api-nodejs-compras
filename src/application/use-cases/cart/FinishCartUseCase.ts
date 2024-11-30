@@ -8,7 +8,7 @@ import { Order } from "../../../domain/entities/Order";
 import { IGetCartUseCase } from "./interfaces/IGetCartUseCase";
 
 @injectable()
-export class FinshCartUseCase implements IFinishCartUseCase {
+export class FinishCartUseCase implements IFinishCartUseCase {
     constructor(
         @inject('ICartRepository') private cartRepository: ICartRepository,
         @inject('IGetCartUseCase') private getCartUseCase: IGetCartUseCase
