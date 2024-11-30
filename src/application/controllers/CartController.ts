@@ -24,7 +24,8 @@ export class CartController {
     }
 
     addProductToCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-        const addProductDTO: AddProductToCartDTO = req.body;
+        const cartId = req.params.cartId;
+        const addProductDTO: AddProductToCartDTO = { ...req.body, cartId: cartId };
 
         try {
             await this.addProductToCartUseCase.invoke(addProductDTO);
