@@ -1,5 +1,4 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { Product } from '../../../domain/entities/Product';
 
 interface IProductCartModel {
     productId: string;

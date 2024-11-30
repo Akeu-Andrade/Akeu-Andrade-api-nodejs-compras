@@ -15,6 +15,8 @@ import { GetCartUseCase } from "../application/use-cases/cart/GetCartByIdUseCase
 import { CartController } from "../application/controllers/CartController";
 import { SaveOrderUseCase } from "../application/use-cases/order/SaveOrderUseCase";
 import { OrderRepository } from "../infrastructure/database/repositories/OrderRepository";
+import { GetStatisticsUseCase } from "../application/use-cases/statistics/GetStatisticsUseCase";
+import { StatisticsController } from "../application/controllers/StatisticsController";
 
 // Product
 
@@ -49,3 +51,9 @@ container.registerSingleton(CartController);
 container.registerSingleton("IOrderRepository", OrderRepository);
 
 container.registerSingleton("ISaveOrderUseCase", SaveOrderUseCase);
+
+// Statistics
+
+container.registerSingleton("IGetStatisticsUseCase", GetStatisticsUseCase);
+
+container.registerSingleton(StatisticsController);

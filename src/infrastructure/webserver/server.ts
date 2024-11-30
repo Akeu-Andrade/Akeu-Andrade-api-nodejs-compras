@@ -6,6 +6,7 @@ import '../../shared/dependencyInjection';
 import { ErrorHandler } from '../../shared/errors/ErrorHandler';
 import { userRoutes } from './routes/userRoutes';
 import { CartRoutes } from './routes/cartRoutes';
+import { StatisticsRoutes } from './routes/statisticsRoutes';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(productRoutes);
 app.use(userRoutes);
 app.use(CartRoutes);
+app.use(StatisticsRoutes);
 
 app.use(ErrorHandler);
 
