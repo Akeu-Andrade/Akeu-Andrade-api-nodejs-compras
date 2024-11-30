@@ -17,10 +17,10 @@ export class AddProductToCartUseCase implements IAddProductToCartUseCase {
         const cart = await this.getCartUseCase.invoke({ cartId: addProductDTO.cartId });
         const product = await this.productRepository.getById(addProductDTO.productId);
 
-        const existedProduct = cart.products.find(product => product.productId === addProductDTO.productId);
+        const existedProduct = cart.products.find(p => p.productId === addProductDTO.productId);
 
         if (existedProduct) {
-            existedProduct.quantity += addProductDTO.quantity;
+            existedProduct.quantity += addProductDTO.quantity? addProductDTO.quantity : 1;
         } else {
             cart.products.push({
                 productId: addProductDTO.productId,

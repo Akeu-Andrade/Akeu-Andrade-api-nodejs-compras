@@ -8,6 +8,6 @@ export class Cart {
             quantity: number
         }>,
         public readonly createdAt: Date,
-        public readonly updatedAt: Date
+        public updatedAt: Date
     ) {}
 }

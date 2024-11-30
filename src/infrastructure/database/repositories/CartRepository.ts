@@ -29,6 +29,7 @@ export class CartRepository implements ICartRepository {
     }
     
     async update(cart: Cart): Promise<void> {
+        cart.updatedAt = new Date();
         await CartModel.updateOne({ _id: cart.id }, cart);
     }
 
