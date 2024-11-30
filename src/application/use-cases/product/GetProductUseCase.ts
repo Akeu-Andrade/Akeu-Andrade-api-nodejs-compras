@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IProductRepository } from "../../../domain/repositories/IProductRepository";
-import { IGetProductUseCase } from "./IGetProductUseCase";
+import { IGetProductUseCase } from "./interfaces/IGetProductUseCase";
 import { Product } from "../../../domain/entities/Product";
 
 @injectable()

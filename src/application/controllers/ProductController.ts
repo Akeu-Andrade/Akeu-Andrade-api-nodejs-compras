@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
 import { SaveProductDTO } from '../dtos/product/SaveProductDTO';
-import { IGetProductUseCase } from '../use-cases/product/IGetProductUseCase';
-import { ISaveProductUseCase } from '../use-cases/product/ISaveProductUseCase';
+import { IGetProductUseCase } from '../use-cases/product/interfaces/IGetProductUseCase';
+import { ISaveProductUseCase } from '../use-cases/product/interfaces/ISaveProductUseCase';
 
 @injectable()
 export class ProductController {

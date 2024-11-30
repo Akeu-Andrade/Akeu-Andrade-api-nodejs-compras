@@ -1,6 +1,6 @@
 import { injectable, inject } from "tsyringe";
 import { SaveProductDTO } from "../../dtos/product/SaveProductDTO";
-import { ISaveProductUseCase } from "./ISaveProductUseCase";
+import { ISaveProductUseCase } from "./interfaces/ISaveProductUseCase";
 import { IProductRepository } from "../../../domain/repositories/IProductRepository";
 import { Product } from "../../../domain/entities/Product";
 import { InvalidParametersError } from "../../../shared/errors/InvalidParametersError";

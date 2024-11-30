@@ -3,6 +3,9 @@ import { IProductRepository } from "../../../domain/repositories/IProductReposit
 import { ProductModel } from "../models/ProductModel";
 
 export class ProductRepository implements IProductRepository {
+    async getById(id: string): Promise<Product | null> {
+         return ProductModel.findById(id)
+    }
 
     async saveProduct(product: Product): Promise<void> {
         const newProduct = {

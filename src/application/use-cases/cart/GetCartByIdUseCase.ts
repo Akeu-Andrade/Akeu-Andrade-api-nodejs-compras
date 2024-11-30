@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ICartRepository } from "../../../domain/repositories/ICartRepository";
 import { Cart } from "../../../domain/entities/Cart";
-import { GetCartDTO } from "../../dtos/GetCartDTO";
+import { GetCartDTO } from "../../dtos/cart/GetCartDTO";
 import { IGetCartUseCase } from "./interfaces/IGetCartUseCase";
 
 @injectable()

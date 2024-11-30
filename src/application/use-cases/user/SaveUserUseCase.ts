@@ -1,5 +1,5 @@
 import { injectable, inject } from "tsyringe";
-import { ISaveUserUseCase } from "./ISaveUserUseCase";
+import { ISaveUserUseCase } from "./interfaces/ISaveUserUseCase";
 import { SaveUserDTO } from "../../dtos/user/SaveUserDTO";
 import { EmailAlreadyExistsError } from "../../../shared/errors/EmailAlreadyExistsError";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";

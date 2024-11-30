@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IGetUsersUseCase } from "./IGetUsersUseCase";
+import { IGetUsersUseCase } from "./interfaces/IGetUsersUseCase";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { User } from "../../../domain/entities/User";
 

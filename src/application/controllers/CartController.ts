@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { AddProductToCartDTO } from '../dtos/cart/AddProductToCartDTO';
 import { FinishCartDTO } from '../dtos/cart/FinishCartDTO';
 import { IFinishCartUseCase } from '../use-cases/cart/interfaces/IFinishCartUseCase';
-import { GetCartDTO } from '../dtos/GetCartDTO';
+import { GetCartDTO } from '../dtos/cart/GetCartDTO';
 import { IGetCartUseCase } from '../use-cases/cart/interfaces/IGetCartUseCase';
 import { IAddProductToCartUseCase } from '../use-cases/cart/interfaces/ISaveCartUseCase';
 
