@@ -17,7 +17,7 @@ Este projeto é uma API de compras desenvolvida em Node.js. Ele permite adiciona
 ## Configuração do Ambiente
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/Akeu-Andrade/node-clean-architecture.git
+    git clone https://github.com/Akeu-Andrade/api-nodejs-compras.git
     cd akeu-andrade-api-nodejs-compras
     ```
 
